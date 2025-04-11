@@ -30,6 +30,7 @@ services:
         - INSTALL_KAFKA=${PHP_FPM_INSTALL_KAFKA}
     volumes:
       - .:/var/www/html
+    user: root
     networks:
       - laravel_network
 
