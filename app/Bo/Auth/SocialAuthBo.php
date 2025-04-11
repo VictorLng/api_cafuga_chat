@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bo;
+namespace App\Bo\Auth;
 
 use App\Models\SocialAccount;
 use Illuminate\Support\Facades\DB;

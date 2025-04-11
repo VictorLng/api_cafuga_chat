@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bo;
+namespace App\Bo\Auth;
 
 class AuthBo
 {

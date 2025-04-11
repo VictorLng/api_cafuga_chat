@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Bo\SocialAuthBo;
+use App\Bo\Auth\SocialAuthBo;
 use App\Http\Controllers\Controller;
 class SocialAuthController extends Controller
 {

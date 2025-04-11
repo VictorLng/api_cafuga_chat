@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
-use App\Bo\AuthBo;
+use App\Bo\Auth\AuthBo;
 
 class AuthController extends Controller
 {
