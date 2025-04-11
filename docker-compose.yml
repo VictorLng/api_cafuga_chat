@@ -30,9 +30,9 @@ services:
         - INSTALL_KAFKA=${PHP_FPM_INSTALL_KAFKA}
     volumes:
       - .:/var/www/html
+    user: root
     networks:
       - laravel_network
-      - api_digital_bank_laravel_network
 
 
   nginx:
@@ -48,15 +48,9 @@ services:
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
     networks:
       - laravel_network
-      - api_digital_bank_laravel_network
     depends_on:
       - php
 
 networks:
   laravel_network:
     driver: bridge
-  api_digital_bank_laravel_network:
-    external: true
-
-volumes:
-  mysql_data:
