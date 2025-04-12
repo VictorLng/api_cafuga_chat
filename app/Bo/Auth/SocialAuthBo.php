@@ -59,6 +59,7 @@ class SocialAuthBo {
                 'user' => $user
             ]);
         } catch (\Exception $e) {
+            dd($e);
             DB::rollBack();
             return redirect()->route('login')->with('error', 'Something went wrong');
         }

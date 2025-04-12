@@ -13,8 +13,9 @@ class SocialAuthController extends Controller
     public function redirectToProvider(string $provider)
     {
         try{
-            $this->socialAuthBo->redirectToProvider($provider);
+           return $this->socialAuthBo->redirectToProvider($provider);
         }catch (\Exception $e) {
+            dd("Erro :". $e);
             return response()->json(['error' => 'Unable to redirect to provider'], 500);
         }
     }
@@ -24,6 +25,7 @@ class SocialAuthController extends Controller
         try{
             return $this->socialAuthBo->handleProviderCallback($provider);
         }catch (\Exception $e) {
+            dd($e);
             return response()->json(['error' => 'Unable to handle provider callback'], 500);
         }
     }
