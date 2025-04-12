@@ -17,6 +17,7 @@ class SocialAuthBo {
 
     public function redirectToProvider(string $provider)
     {
+        dd(Socialite::driver($provider));
         return Socialite::driver($provider)->redirect();
     }
 
