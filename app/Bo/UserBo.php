@@ -24,4 +24,9 @@ class UserBo implements UserInterface
     {
         return $this->userRepository->findUserByEmail($email);
     }
+
+    public function register($data)
+    {
+        return $this->userRepository->register($data);
+    }
 }

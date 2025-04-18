@@ -21,13 +21,12 @@ class AuthBo implements AuthInterface
 
     public function login($credentials)
     {
-        $user = $this->userBo->findUserByEmail($credentials->email);
+        $user = $this->userBo->getUserByEmail($credentials->email);
         if(Hash::check($credentials->password, $user->password)) {
             $user->setRememberToken();
         } else {
             throw new \Exception('Invalid credentials');
         }
-        dd('User', $user);
     }
 
     public function register($credentials)
@@ -41,9 +40,9 @@ class AuthBo implements AuthInterface
 
             $user = $this->userBo->register($this->userData->toArray());
 
-            $user->setRememberToken();
+            DB::commit();
+            return $user;
         } catch(\Exception $e) {
-            dd($e);
             DB::rollBack();
             throw $e;
         }

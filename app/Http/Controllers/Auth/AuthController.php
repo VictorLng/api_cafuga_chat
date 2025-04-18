@@ -28,7 +28,7 @@ class AuthController extends Controller
         try {
             return $this->authBo->register($request);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Unable to register'], 500);
+            return response()->json(['error' => 'Unable to register'. $e], 500);
         }
     }
 

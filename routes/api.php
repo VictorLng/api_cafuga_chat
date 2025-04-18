@@ -9,5 +9,5 @@ Route::post('/test', function () {
     return response()->json(['message' => 'Hello World!']);
 });
 
-Route::post('/login', [AuthController::class ,'login']);
-Route::post('/register', [AuthController::class,  'register']);
+Route::post('/login', [AuthController::class ,'login'])->name('login');
+Route::post('/register', [AuthController::class,  'register'])->name('register');
