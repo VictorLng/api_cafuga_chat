@@ -2,24 +2,31 @@
 
 namespace App\Bo\Auth;
 
-use App\Repositories\UserRepository;
+use App\Bo\UserBo;
 use Illuminate\Support\Facades\DB;
+use App\Bo\Interfaces\AuthInterface;
 use App\Resources\UserData;
+use Illuminate\Support\Facades\Hash;
 
 class AuthBo implements AuthInterface
 {
-    protected UserRepository $userRepository;
+    protected UserBo $userBo;
     protected UserData $userData;
-    public function __construct( UserRepository $userRepository, UserData $userData)
+    public function __construct( UserBo $userBo, UserData $userData)
     {
         $this->userData = $userData;
-        $this->userRepository = $userRepository;
+        $this->userBo = $userBo;
     }
 
 
     public function login($credentials)
     {
-        $user = $this->userRepository->findUserByEmail($credentials->email);
+        $user = $this->userBo->findUserByEmail($credentials->email);
+        if(Hash::check($credentials->password, $user->password)) {
+            $user->setRememberToken();
+        } else {
+            throw new \Exception('Invalid credentials');
+        }
         dd('User', $user);
     }
 
@@ -27,8 +34,14 @@ class AuthBo implements AuthInterface
     {
         DB::beginTransaction();
         try{
-            teste;
-            $user = $this->userRepository->register($credentials);
+
+            $this->userData->setName($credentials->name);
+            $this->userData->setEmail($credentials->email);
+            $this->userData->setPassword(Hash::make($credentials->password));
+
+            $user = $this->userBo->register($this->userData->toArray());
+
+            $user->setRememberToken();
         } catch(\Exception $e) {
             dd($e);
             DB::rollBack();

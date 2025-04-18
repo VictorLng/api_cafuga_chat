@@ -4,9 +4,9 @@ namespace App\Resources;
 
 class SocialAccountData
 {
-    public $provider;
-    public $provider_id;
-    public $user_id;
+    protected $provider;
+    protected $provider_id;
+    protected $user_id;
 
     public function setProvider($provider)
     {
