@@ -13,19 +13,19 @@ class AuthController extends Controller
         $this->authBo = $authBo;
     }
 
-    public function login()
+    public function login(AuthValidator $request)
     {
         try {
-            return $this->authBo->login();
+            return $this->authBo->login($request);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Unable to login'], 500);
         }
     }
 
-    public function register()
+    public function register(AuthValidator $request)
     {
         try {
-            return $this->authBo->register();
+            return $this->authBo->register($request);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Unable to register'], 500);
         }

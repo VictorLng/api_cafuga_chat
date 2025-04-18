@@ -15,7 +15,6 @@ class SocialAuthController extends Controller
         try{
            return $this->socialAuthBo->redirectToProvider($provider);
         }catch (\Exception $e) {
-            dd("Erro :". $e);
             return response()->json(['error' => 'Unable to redirect to provider'], 500);
         }
     }

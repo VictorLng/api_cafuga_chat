@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\DB;
 
 class UserRepository
 {
-    public function __construct()
+    public static function register(array $data)
     {
-        // Constructor code if needed
+        return User::firstOrCreate($data);
     }
 
-    public static function create(array $data)
+    public static function findUserByEmail($email)
     {
-        return User::create($data);
+        return User::where('email', $email)->first();
     }
 
 }

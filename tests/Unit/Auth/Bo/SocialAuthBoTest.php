@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use Mockery;
-use App\Bo\SocialAuthBo;
+use App\Bo\Auth\SocialAuthBo;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Contracts\User as SocialUser;
 use App\Models\User;

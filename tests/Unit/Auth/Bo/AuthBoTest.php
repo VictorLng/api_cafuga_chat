@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Auth\Bo;
 use Tests\TestCase;
-use App\Bo\AuthBo;
+use App\Bo\Auth\AuthBo;
 
 class AuthBoTest extends TestCase
 {
@@ -37,7 +37,6 @@ class AuthBoTest extends TestCase
     public function testRegister()
     {
         $expectedResponse = (object) [
-            "token" => "qualquer bosta",
             "user" => (object)[
                 'name' => 'teste',
                 'email' => "teste@gmail.com",
@@ -45,7 +44,7 @@ class AuthBoTest extends TestCase
             ]
         ];
         $response = $this->authBo->register();
-        $this->assertTrue($response);
+        $this->assertObjectEquals($expectedResponse,$response);
     }
     public function testLogout()
     {
