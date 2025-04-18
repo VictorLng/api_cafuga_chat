@@ -13,14 +13,20 @@ class UserData
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
+
     }
     public function setEmail($email)
     {
         $this->email = $email;
+        return $this;
+
     }
     public function setPassword($password)
     {
         $this->password = $password;
+        return $this;
+
     }
     public function getName()
     {
@@ -36,12 +42,16 @@ class UserData
     }
     public function toArray()
     {
-        return [
+        $array = [
             'name' => $this->name,
             'email' => $this->email,
             'password' => $this->password,
             'provider' => $this->provider,
             'provider_id' => $this->provider_id,
         ];
+
+        return array_filter($array, function ($value) {
+            return !is_null($value);
+        });
     }
 }
