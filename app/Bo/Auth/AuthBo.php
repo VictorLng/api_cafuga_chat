@@ -21,7 +21,6 @@ class AuthBo implements AuthInterface
 
     public function login($credentials)
     {
-        dd('teste');
         $user = $this->userBo->findUserByEmail($credentials->email);
         if(Hash::check($credentials->password, $user->password)) {
             $user->setRememberToken();
